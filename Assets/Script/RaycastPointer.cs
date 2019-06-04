@@ -7,7 +7,7 @@ public class RaycastPointer : MonoBehaviour
     private string itemTag = "CollectionItem";
     public Transform PlayerBody;
     public EnemyScript enermy;
-    public float range = 20f;
+    public float range = 100f;
     // Update is called once per frame
     void Update()
     {
@@ -21,9 +21,12 @@ public class RaycastPointer : MonoBehaviour
     {
         if(Physics.Raycast(PlayerBody.transform.position, PlayerBody.transform.forward, out RaycastHit hit, range))
         {
+            Debug.Log(hit.transform.name);
+
 
             if (hit.transform.CompareTag(itemTag))
             {
+
                 GameManager.Instance.pickUpItem(hit.transform.gameObject);
             }
         }

@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
     [Header("Nav mesh things")]
     public NavMeshAgent navMeshAgent;
+    private Animator animator;
     public Transform[] wayPoints;
     private Transform PlayerLastPosition;
     public GameObject Player;
@@ -39,10 +40,12 @@ public class EnemyScript : MonoBehaviour
         lastPosChange = false;
         playerBody = Player.GetComponent<Rigidbody>();
         quickThreshold = Mathf.Sqrt(quickThreshold);
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator.SetBool("walking", true);
         if (lastPosChange)
         {
             ChangeDest();
